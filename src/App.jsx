@@ -1,43 +1,38 @@
-import React from "react";
-import ProfileCard from "./components/ProfileCard";
+import React, { useState } from "react";
+import Header from "./components/Header";
+import MotivationQuote from "./components/MotivationQuote";
+import AddHabitModal from "./components/AddHabitModal";
+import StreakChart from "./components/StreakChart";
+import HabitList from "./components/HabitList";
 
-const App = () => {
-  const people = [
-    {
-      name: "Sophia Patel",
-      role: "UI/UX Designer",
-      quote: "Design is intelligence made visible.",
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
-      buttonText: "Follow",
-    },
-    {
-      name: "James Turner",
-      role: "Web Developer",
-      quote: "Code is like humor. When you have to explain it, it’s bad.",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
-      buttonText: "Message",
-    },
-    {
-      name: "Ava Smith",
-      role: "Project Manager",
-      quote: "Plan well, execute better.",
-      image: "https://randomuser.me/api/portraits/women/65.jpg",
-      buttonText: "Connect",
-    },
-  ];
+function App() {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => setShowModal(false);
 
   return (
-    <div className="bg-gradient-to-br from-indigo-100 to-purple-200 min-h-screen p-6">
-      <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">
-        Our Team
-      </h1>
-      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        {people.map((person, index) => (
-          <ProfileCard key={index} {...person} />
-        ))}
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
+      <Header />
+      <main className="flex-1 flex flex-col items-center px-4 py-8">
+        <div className="w-full max-w-5xl flex flex-col items-center mx-auto gap-6">
+          <MotivationQuote />
+          <StreakChart />
+          <div className="w-full flex items-center justify-between mt-8 mb-4">
+            <h2 className="text-2xl font-bold text-gray-800 tracking-tight">Habits</h2>
+            <button
+              className="px-5 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow-lg hover:bg-blue-700 transition text-lg"
+              onClick={() => setShowModal(true)}
+            >
+              + Add Habit
+            </button>
+          </div>
+          <HabitList />
+        </div>
+      </main>
+      {/* Show modal only when showModal is true */}
+      {showModal && <AddHabitModal onClose={handleCloseModal} />}
     </div>
   );
-};
+}
 
 export default App;
