@@ -58,8 +58,3 @@ const AddHabitModal = ({ onClose }) => {
 
 export default AddHabitModal;
 
-// Tailwind custom animations (add to index.css):
-// .animate-fadeIn { animation: fadeInBg 0.3s ease; }
-// .animate-fadeInModal { animation: fadeInModal 0.4s cubic-bezier(0.4,0,0.2,1); }
-// @keyframes fadeInBg { from { opacity: 0; } to { opacity: 1; } }
-// @keyframes fadeInModal { from { transform: translateY(40px) scale(0.95); opacity: 0; } to { transform: none; opacity: 1; } }
